@@ -1,0 +1,13 @@
+<h1>Q&A</h1>
+
+<form (submit)="login()">
+  <p>Name: <input
+              type="text"
+              name="name"
+              [(ngModel)]="new_user.name"
+              #username="ngModel"
+              required
+              minlength=2
+              ></p>
+  <p><input type="submit" value="Enter" [disabled]="!new_user.name || username.invalid "></p>
+</form>

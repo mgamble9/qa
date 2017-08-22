@@ -1,0 +1,22 @@
+<h2>Hi, {{ current_user.name }}!</h2>
+<p><a href="/logout">Logout</a></p>
+
+<p><a href="/new-question">Add a Question</a></p>
+
+<input type="text" name="search_text" placeholder="Search By Question" [(ngModel)]=search_text>
+
+<div *ngIf="question_list">
+<table>
+  <tr>
+    <th>Question</th>
+    <th>Answers</th>
+    <th>Action</th>
+  </tr>
+  <tr *ngFor="let q of question_list | filtersearch:search_text ; let i = index">
+    <!-- <tr *ngFor="let q of question_list | filtersearch:search_text"> -->
+    <td>{{ q.question }}</td>
+    <td>{{ answer_count[i] }}</td>
+    <td><a [routerLink]="['/#question',q._id]">Show</a> <a [routerLink]="['/#question',q._id,'new_answer']">Answer</a></td>
+  </tr>
+</table>
+</div>

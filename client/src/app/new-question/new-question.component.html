@@ -1,0 +1,24 @@
+
+<p><a href="/home">Home</a></p>
+<p><a href="/logout">Logout</a></p>
+
+<h1>New Question</h1>
+<form #questionform="ngForm" (submit)="add_question()">
+  <p>Question:
+    <input type="textarea"
+          name="question"
+          [(ngModel)]="new_question.question"
+          #question_test="ngModel"
+          required
+          minlength="10"
+          maxlength="1000"
+          ></p>
+    <p *ngIf = "question_test.invalid">Need at least 10 characters for question!</p>
+  <p>Description (optional)
+    <input type="textarea"
+         name="qdetail"
+         [(ngModel)]="new_question.qdetail"
+         ></p>
+  <p><input type="submit" value="Add Question" [disabled]="!current_user || questionform.invalid"></p>
+</form>
+  <button [routerLink]="['/home']">Cancel</button>

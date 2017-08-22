@@ -1,0 +1,25 @@
+<p><a href="/home">Home</a> | <a [routerLink]="['/#question',question_id]">Go Back To Question</a></p>
+<p><a href="/logout">Logout</a></p>
+
+<h1 *ngIf = "question">{{ question.question }}</h1>
+<h2 *ngIf = "question">{{ question.qdetail }}</h2>
+<form #answerform="ngForm" (submit)="add_answer()">
+  <p>Your Answer:
+    <input type="textarea"
+          name="answer"
+          [(ngModel)]="new_answer"
+          #answer="ngModel"
+          required
+          minlength="5"
+          maxlength="1000"
+          ></p>
+          <p *ngIf = "answer.invalid">Need at least 10 characters for question!</p>
+  <p>Supporting details for your answer (optional)
+    <input type="textarea"
+         name="adetail"
+         [(ngModel)]="new_adetail"
+         ></p>
+  <p><input type="submit" value="Submit" [disabled]="!current_user || answerform.invalid"></p>
+</form>
+
+  <button [routerLink]="['/home']">Cancel</button>

@@ -1,0 +1,13 @@
+<p><a href="/home">Home</a> | <a [routerLink]="['/#question',question_id,'new_answer']">Answer this Question</a></p>
+<p><a href="/logout">Logout</a></p>
+
+<div *ngIf = "question">
+  <h1>{{ question.question }}</h1>
+  <h2>{{ question.qdetail }}</h2>
+
+  <div *ngFor="let x of question.answers; let i = index">
+    <p>{{ x.username }}:</p>
+    <p>{{ x.answer }} | {{x.likes}} <button (click)='update_likes(i)'>Like!</button></p>
+    <p>{{ x.adetail }}</p>
+  </div>
+</div>
